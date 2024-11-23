@@ -2,7 +2,7 @@ let seguirComprando = false;
 let precioTotal = 0;
 do {
   let productoElegido = parseInt(prompt("Bienvenido , ¿cuál es el producto que deseas comprar? \n 1. Proteinas \n 2. Creatinas"));
-
+//Ciclo compra proteinas
 if (productoElegido === 1) {
   let proteinaElegida = parseInt(prompt("¿Qué proteina deseas comprar?: \n 1. Star nutrition $30.000\n 2. One fit 20.000"));
   let cantidadElegida = parseInt(prompt("¿Cuántas proteinas deseas comprar?"));
@@ -14,7 +14,7 @@ if (productoElegido === 1) {
     alert("Seleccione una opcion valida");
   }
 
-
+//Ciclo compra creatinas
 } else if (productoElegido === 2){
   let creatinaElegida = parseInt(prompt("¿Qué creatina deseas comprar?: \n 1. Star nutrition $20.000 \n 2. One fit 15.000"));
   let cantidadElegida = parseInt(prompt("¿Cuántas creatinas deseas comprar?"));
