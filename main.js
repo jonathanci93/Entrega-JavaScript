@@ -1,42 +1,52 @@
-let seguirComprando = false;
-let precioTotal = 0;
 
-// Función para calcular el precio
-function calcularPrecio(precioUnitario, cantidad) {
-  return precioUnitario * cantidad;
+
+//Array de proteinas
+const proteinas = [
+  {nombre: "Star Nutrition", precio: 30000},
+  {nombre: "One Fit", precio: 20000},
+  {nombre: "Optimum Nutrition", precio: 25000},
+];
+//Array de creatinas
+const creatinas =[
+  {nombre: "Star Nutrition", precio: 20000},
+  {nombre: "One Fit", precio: 15000},
+  {nombre: "Gold", precio: 18000},
+];
+
+let productoElegido = Number(prompt("Bienvenido , ¿cuál es el producto que deseas comprar? \n 1. Proteinas \n 2. Creatinas", "Ejemplo: 1"));
+let ordenarProductos = Number(prompt("¿Desea ordenar los productos de mayor a menor? \n 1. Si \n 2. No", "Ejemplo 1"));
+
+
+let productosElegidos = [];
+
+
+if (productoElegido === 1) {
+  productosElegidos = proteinas;
+} else if (productoElegido === 2) {
+  productosElegidos = creatinas;
+} else {
+  alert("Por favor, elija un producto válido");
+}
+//Ordenar productos 
+if (ordenarProductos === 1) {
+  productosElegidos.sort((a, b) => b.precio - a.precio);
 }
 
-do {
-  let productoElegido = parseInt(prompt("Bienvenido, ¿cuál es el producto que deseas comprar? \n 1. Proteinas \n 2. Creatinas"));
 
-  // Ciclo compra proteinas
-  if (productoElegido === 1) {
-    let proteinaElegida = parseInt(prompt("¿Qué proteina deseas comprar?: \n 1. Star nutrition $30.000\n 2. One fit $20.000"));
-    let cantidadElegida = parseInt(prompt("¿Cuántas proteinas deseas comprar?"));
-    if (proteinaElegida === 1) {
-      precioTotal += calcularPrecio(30000, cantidadElegida);
-    } else if (proteinaElegida === 2) {
-      precioTotal += calcularPrecio(20000, cantidadElegida);
-    } else {
-      alert("Seleccione una opción válida");
-    }
+//Mostrar productos
+if (productosElegidos) {
+  let comprarProducto = "¿Que producto desea comprar? \n";
+    productosElegidos.forEach((producto, index) => {
+      comprarProducto += `${index + 1} ${producto.nombre} - Precio: $${producto.precio} \n`;
+    });
 
-  // Ciclo compra creatinas
-  } else if (productoElegido === 2) {
-    let creatinaElegida = parseInt(prompt("¿Qué creatina deseas comprar?: \n 1. Star nutrition $20.000 \n 2. One fit $15.000"));
-    let cantidadElegida = parseInt(prompt("¿Cuántas creatinas deseas comprar?"));
-    if (creatinaElegida === 1) {
-      precioTotal += calcularPrecio(20000, cantidadElegida);
-    } else if (creatinaElegida === 2) {
-      precioTotal += calcularPrecio(15000, cantidadElegida);
-    } else {
-      alert("Seleccione una opción válida");
-    }
+
+let productoSeleccionado = Number(prompt(comprarProducto));
+  // Validar selección
+  if (productoSeleccionado > 0 && productoSeleccionado <= productosElegidos.length) {
+    let productoFinal = productosElegidos[productoSeleccionado - 1];
+    alert(`Has comprado: ${productoFinal.nombre} por $${productoFinal.precio}`);
   } else {
-    alert("Por favor, elija un producto válido");
+    alert("Opción no válida. Por favor elige un número de producto válido.");
   }
-
-  seguirComprando = confirm("¿Desea seguir comprando?");
-} while (seguirComprando);
-
-alert("El precio total es de: " + precioTotal);
+}
